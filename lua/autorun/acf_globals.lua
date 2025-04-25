@@ -353,6 +353,9 @@ elseif CLIENT then
 
 end
 
+-- Make armor public
+CreateConVar("acf_armor_public", 1, FCVAR_ARCHIVE+FCVAR_REPLICATED)
+
 
 if ACF.AllowCSLua > 0 then
 	AddCSLuaFile("autorun/translation/ace_translationpacks.lua")

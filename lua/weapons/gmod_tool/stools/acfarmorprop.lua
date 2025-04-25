@@ -127,7 +127,7 @@ do -- Allowing everyone to read contraptions
 	ACE_OldHookCall = ACE_OldHookCall or hook.Call
 
 	function hook.Call(Name, Gamemode, Player, Entity, Tool, ...)
-		if Name == "CanTool" and Tool == "acfarmorprop" and Player:KeyPressed(IN_RELOAD) then
+		if Name == "CanTool" and Tool == "acfarmorprop" and Player:KeyPressed(IN_RELOAD) and GetConVar("acf_armor_public"):GetBool() then
 			return true
 		end
 
@@ -215,7 +215,7 @@ function TOOL:Think()
 	local ent = trace.Entity
 	if ent == self.AimEntity then return end
 
-	if ACF_Check( ent ) then
+	if ACF_Check( ent ) and (GetConVar("acf_armor_public"):GetBool() or ent:CPPICanTool(self:GetOwner())) then
 
 		local Mat = ent.ACF.Material or "RHA"
 		local MatData =  ACE_GetMaterialData( Mat )
